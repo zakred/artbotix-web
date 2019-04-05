@@ -2,11 +2,12 @@ FROM python:3.7-alpine
 
 WORKDIR /
 
-RUN apk add zlib-dev && \
-    apk add jpeg-dev && \
-    apk add gcc && \
-    apk add musl-dev && \
+RUN apk add zlib-dev jpeg-dev gcc musl-dev && \
+    pip install Pillow && \
     pip install django && \
-    pip install Pillow
+    
+    # Requirements for uwsgi
+    apk add python3-dev build-base linux-headers pcre-dev && \
+    pip install uwsgi
 
 CMD ["python", "-V"]
