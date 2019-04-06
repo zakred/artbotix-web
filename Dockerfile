@@ -5,9 +5,10 @@ WORKDIR /
 RUN apk add zlib-dev jpeg-dev gcc musl-dev && \
     pip install Pillow && \
     pip install django && \
-    
     # Requirements for uwsgi
     apk add python3-dev build-base linux-headers pcre-dev && \
-    pip install uwsgi
+    pip install uwsgi && \
+    # add /etc/mime.types
+    apk add mailcap
 
 CMD ["python", "-V"]
